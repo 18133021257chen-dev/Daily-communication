@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Communication Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero">
+      <p class="eyebrow">本地规则版 · 无需联网 · 直接可用</p>
+      <h1>Daily Communication Assistant</h1>
+      <p class="subtitle">把日常中文沟通内容优化成更清晰、更礼貌、更适合办公场景的表达，并生成英文参考版本。</p>
+    </section>
+
+    <section class="card input-card" aria-labelledby="form-title">
+      <div class="section-heading">
+        <h2 id="form-title">输入沟通内容</h2>
+        <span id="char-count">0 字</span>
+      </div>
+
+      <label for="source-text">需要优化的中文内容</label>
+      <textarea id="source-text" rows="8" placeholder="例如：你今天把这个表格整理一下，下班前发给我。"></textarea>
+
+      <div class="controls">
+        <div class="field-group">
+          <label for="audience">选择发送对象</label>
+          <select id="audience">
+            <option value="subordinate">下属</option>
+            <option value="colleague">同事</option>
+            <option value="superior">上级</option>
+          </select>
+        </div>
+        <button id="generate-btn" type="button">生成</button>
+      </div>
+      <p class="hint">提示：当前版本不调用 OpenAI API，只根据常见办公措辞规则进行本地改写。</p>
+    </section>
+
+    <section id="results" class="results" aria-live="polite" hidden>
+      <article class="result-card">
+        <div class="result-header">
+          <h3>优化版中文</h3>
+          <button class="copy-btn" type="button" data-target="optimized-output">一键复制</button>
+        </div>
+        <div id="optimized-output" class="output"></div>
+      </article>
+
+      <article class="result-card">
+        <div class="result-header">
+          <h3>精简版中文</h3>
+          <button class="copy-btn" type="button" data-target="concise-output">一键复制</button>
+        </div>
+        <div id="concise-output" class="output"></div>
+      </article>
+
+      <article class="result-card">
+        <div class="result-header">
+          <h3>英文版</h3>
+          <button class="copy-btn" type="button" data-target="english-output">一键复制</button>
+        </div>
+        <div id="english-output" class="output"></div>
+      </article>
+    </section>
+  </main>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
